@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour
 
     string startText;
     public bool isStarting = false;
-    public bool Finished = false;  
+    public bool Finished = false;
+    public bool isAttacking = false;
     public Animator anim;
 
     GameController gmController;
@@ -29,9 +30,9 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); 
         anim = GetComponent<Animator>();
-        startText = "GO!";
-
         gmController = FindAnyObjectByType<GameController>();
+
+        startText = "GO!";
     }
 
     private void FixedUpdate()
@@ -53,6 +54,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         StartTimer(startText);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            isAttacking = true;
+            Attacks();
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Invoke(nameof(AttackTimer), .6f);
+        }
+        
     }
 
     void StartTimer(string startText)
@@ -89,6 +100,26 @@ public class PlayerController : MonoBehaviour
         Speed = 4f;
         FindAnyObjectByType<MouseInput>().AllowChanger();
         gmController.StartingFight();
+    }
+
+    void Attacks()
+    {
+        if (isAttacking)
+        {
+            anim.SetBool("Punch", true);
+        }
+        if (!isAttacking)
+        {
+            anim.SetBool("Punch", false);
+        }
+        
+    }
+
+    void AttackTimer()
+    {
+        Debug.Log("aa");
+        isAttacking = false;
+        Attacks();
     }
 
     private void OnCollisionEnter(Collision other)

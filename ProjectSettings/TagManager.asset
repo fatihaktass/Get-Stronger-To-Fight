@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PositiveColor
   - NegativeColor
+  - Boss
   layers:
   - Default
   - TransparentFX
