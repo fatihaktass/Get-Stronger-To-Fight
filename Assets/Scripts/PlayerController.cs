@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
 
     void AttackTimer()
     {
-        Debug.Log("aa");
         isAttacking = false;
         Attacks();
     }

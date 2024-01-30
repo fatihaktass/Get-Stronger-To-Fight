@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandCollision : MonoBehaviour
+public class BossHand : MonoBehaviour
 {
     GameController gmController;
-    PlayerController playerController;
+    Boss boss;
 
     private void Start()
     {
         gmController = FindAnyObjectByType<GameController>();
-        playerController = FindAnyObjectByType<PlayerController>();
+        boss = FindAnyObjectByType<Boss>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boss") && playerController.isAttacking)
+        if (other.CompareTag("Player") && boss.isAttacking)
         {
-            gmController.BossHealthUpdater();
+            gmController.PlayerHealthUpdater();
         }
+
     }
 }

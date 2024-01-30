@@ -12,7 +12,7 @@ public class Boss : MonoBehaviour
     NavMeshAgent bossAgent;
     PlayerController playerController;
     bool attackRange, checkRange;
-    bool isAttacking;
+    public bool isAttacking;
 
     public LayerMask checkLayer;
     private void Start()
@@ -51,12 +51,13 @@ public class Boss : MonoBehaviour
             bossAgent.isStopped = true;
             bossAnimator.SetBool("Attacking", true);
             isAttacking = true;
-            Invoke("FinishedAttack", 0.3f);
+            Invoke("FinishedAttack", 0.6f);
         }
     }
 
     public void FinishedAttack()
     {
         isAttacking = false;
+        Debug.LogAssertion("bb");
     }
 }

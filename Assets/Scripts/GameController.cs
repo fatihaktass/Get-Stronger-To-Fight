@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public void PlayerHealthUpdater()
     {
         PlayerHealth -= 10f;
+        healthSliders[0].value = PlayerHealth;
     }
 
     public void BossHealthUpdater()
